@@ -1,0 +1,122 @@
+{{>head}}
+{{>navbar}}
+
+
+<div class=container>
+
+<div class="cs-form">
+<label for="time" class="form-label">Trip time</label>
+  <input type="time" class="form-control" value="10:05 AM" id="time" />
+</div>
+<form class="row g-3">
+  <div class="col-md-6">
+    <label for="loc" class="form-label">Location</label>
+    <input type="text" class="form-control" id="loc">
+  </div>
+
+  <div class="col-md-6">
+    <label for="dep" class="form-label">Department</label>
+    <input type="text" class="form-control" id="dep">
+  </div>
+
+  <div class="col-md-6">
+    <label for="primeclass" class="form-label">Prime class</label>
+    <input type="text" class="form-control" id="primeclass">
+  </div>
+<!--
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Password</label>
+    <input type="password" class="form-control" id="inputPassword4">
+  </div>
+  -->
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+  </div>
+  
+  <!--
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">City</label>
+    <input type="text" class="form-control" id="inputCity">
+  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">State</label>
+    <select id="inputState" class="form-select">
+      <option selected>Choose...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input type="text" class="form-control" id="inputZip">
+  </div>
+-->
+
+
+<div class="col-md-6 mb-4">
+
+                  <h6 class="mb-2 pb-1">Direction: </h6>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="femaleGender "
+                      value="option1" checked />
+                    <label class="form-check-label" for="femaleGender">Towards university</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                      value="option2" />
+                    <label class="form-check-label" for="maleGender">From university</label>
+                  </div>
+
+                </div>
+
+
+
+
+
+
+
+  <div class="col-md-6 mb-4">
+
+                  <h6 class="mb-2 pb-1">Preferred Gender: </h6>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="femaleGender "
+                      value="option1" checked />
+                    <label class="form-check-label" for="femaleGender">Female</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                      value="option2" />
+                    <label class="form-check-label" for="maleGender">Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="otherGender"
+                      value="option3" />
+                    <label class="form-check-label" for="otherGender">Other</label>
+                  </div>
+
+                </div>
+  <!--
+  <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  -->
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </div>
+</form>
+</div>
+
+
+
+
+{{>tail}}
