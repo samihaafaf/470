@@ -1,27 +1,53 @@
 {{>head}}
 {{>navbar}}
 
+<!--  //add calender here
+<section class="container">
+  <form class="row">
+    <label for="date" class="col-1 col-form-label">Date</label>
+    <div class="col-5">
+      <div class="input-group date" id="datepicker">
+        <input type="text" class="form-control" id="date"/>
+        <span class="input-group-append">
+          <span class="input-group-text bg-light d-block">
+            <i class="fa fa-calendar"></i>
+          </span>
+        </span>
+      </div>
+    </div>
+  </form>
+</section>
+-->
 
 <div class=container>
 
-<div class="cs-form">
-<label for="time" class="form-label">Trip time</label>
-  <input type="time" class="form-control" value="10:05 AM" id="time" />
-</div>
-<form class="row g-3">
+
+
+  
+<form class="row g-3" action="/post_ride" method="post">
+  
   <div class="col-md-6">
     <label for="loc" class="form-label">Location</label>
-    <input type="text" class="form-control" id="loc">
+    <input type="text" class="form-control" id="loc" name="loc">
+  </div>
+  
+  <div class="col-md-6">
+    <label for="date" class="form-label">Date</label>
+    <input type="Date" class="form-control" id="date" name="date">
   </div>
 
+ <div class="cs-form">
+<label for="time" class="form-label">Trip time</label>
+  <input type="time" class="form-control" value="10:05 AM" id="time" name="trip_t"/>
+</div>
   <div class="col-md-6">
     <label for="dep" class="form-label">Department</label>
-    <input type="text" class="form-control" id="dep">
+    <input type="text" class="form-control" id="dep" name="dep">
   </div>
 
   <div class="col-md-6">
     <label for="primeclass" class="form-label">Prime class</label>
-    <input type="text" class="form-control" id="primeclass">
+    <input type="text" class="form-control" id="primeclass" name="p_class">
   </div>
 <!--
   <div class="col-md-6">
@@ -29,10 +55,7 @@
     <input type="password" class="form-control" id="inputPassword4">
   </div>
   -->
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
+  
   
   <!--
   <div class="col-md-6">
@@ -58,15 +81,15 @@
                   <h6 class="mb-2 pb-1">Direction: </h6>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="femaleGender "
-                      value="option1" checked />
-                    <label class="form-check-label" for="femaleGender">Towards university</label>
+                    <input class="form-check-input" type="radio" name="dir" id="towards "
+                      value="option1" checked name="dir"/>
+                    <label class="form-check-label" for="towards">Towards university</label>
                   </div>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="maleGender"
+                    <input class="form-check-input" type="radio" name="dir" id="from"
                       value="option2" />
-                    <label class="form-check-label" for="maleGender">From university</label>
+                    <label class="form-check-label" for="from">From university</label>
                   </div>
 
                 </div>
@@ -110,9 +133,11 @@
     </div>
   </div>
   -->
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary">Sign in</button>
-  </div>
+  
+
+  <div class="mt-4 pt-2">
+                <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+    </div>
 </form>
 </div>
 

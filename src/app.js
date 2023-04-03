@@ -9,6 +9,9 @@ require("./db/conn");
 
 
 const Student = require("./models/registers");
+
+const Trip = require("./models/trips");
+
 const { json } = require("express");
 
 const port = process.env.PORT || 3000;
@@ -70,6 +73,47 @@ app.post("/register_form",async (req, res) => {
         res.status(400).send(error);
     }
 }) 
+
+
+//creating the trip database
+
+
+app.post("/post_ride",async (req, res) => {
+    try{
+            
+        const trips = new Trip({   //show a prompt that the email or password is
+                                               // not unique
+            trip_t: req.body.trip_t,
+            loc: req.body.loc,
+            p_class: req.body.p_class,
+            dir: req.body.dir,
+            gender:req.body.gender,
+            date:req.body.date,
+            dep:req.body.dep
+        })
+        const posted = await trips.save();
+        res.status(201).render("index");
+
+
+            
+            
+        //const registered = await Student.save();
+               //res.status(201).render(index);
+        
+         } catch(error){
+        res.status(400).send(error);
+    }
+}) 
+
+
+
+
+
+
+
+
+
+
 
 
 //app.get - for getting data
