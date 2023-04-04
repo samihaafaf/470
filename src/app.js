@@ -7,8 +7,8 @@ const hbs = require("hbs");
 
 require("./db/conn"); 
 
+const authRoutes = require("./router/auth");  //require the router
 
-const Student = require("./models/registers");
 
 const Trip = require("./models/trips");
 
@@ -36,43 +36,7 @@ app.get("/",(req,res) => {
     res.render("index")
 });
 
-app.get("/login", (req, res) => {
-    res.render("login");
-}) 
-
 //create a new user in the database
-app.post("/register_form",async (req, res) => {
-    try{
-        const password = req.body.password;
-        const cpassword = req.body.confirm_password;
-
-        if (password==cpassword){
-            
-            const studentRegister = new Student({   //show a prompt that the email or password is
-                                                    // not unique
-                first_name: req.body.first_name,
-                last_name: req.body.first_name,
-                department: req.body.last_name,
-                email: req.body.email,
-                password: password ,
-                confirm_password: cpassword,
-                phone_no:req.body.phone_no
-            })
-            const registered = await studentRegister.save();
-            res.status(201).render("index");
-
-
-            }else{
-                
-                res.send("password not matching")
-            }
-        //const registered = await Student.save();
-               //res.status(201).render(index);
-        
-         } catch(error){
-        res.status(400).send(error);
-    }
-}) 
 
 
 //creating the trip database
@@ -105,11 +69,23 @@ app.post("/post_ride",async (req, res) => {
     }
 }) 
 
+//printing the values from the student database
+
+app.get("/view", async (req,res)=>{
+    try{
+        const things = await Trip.find({});  //use schema name
+        res.render("view", {
+            things
+        });
+        console.log(things);
+    }catch(error){
+        res.status(400).send(error);
+    }
+})
 
 
 
-
-
+app.use(authRoutes);
 
 
 
@@ -123,9 +99,7 @@ app.post("/post_ride",async (req, res) => {
 
 
 //create a new user in out db
-app.get("/register_form", (req, res) => {
-    res.render("register_form");
-}) 
+
 
 
 
