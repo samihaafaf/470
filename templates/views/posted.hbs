@@ -1,18 +1,7 @@
 {{>head}}
 {{>navbar}}
-<h1> view page</h1>
-<!--
-<ul class="list-group"></ul>
-{{#each things ~}}
-    
-  <li class="list-group-item" >{{~loc}}</li>
 
-    
-{{~/each}}
-</ul>
--->
-
-
+ 
 <div class="container">
 <table class="table mt-5">
   <thead>
@@ -28,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each all_trip}}
+    {{#each user}}
     <tr>
       <th scope="row">{{@index_1}}</th>
       <td>{{this.loc}}</td>
@@ -43,4 +32,6 @@
   </tbody>
 </table>
 </div>
+
+ 
 {{>tail}}

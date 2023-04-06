@@ -11,7 +11,7 @@ const tripSchema = new mongoose.Schema({
     },
     p_class:{
         type:String,
-        required:true
+        required:false
 
     },
     
@@ -35,9 +35,11 @@ const tripSchema = new mongoose.Schema({
         type:String,
         required:true 
     },
-    name:{
-        type:String,
-        required:true  
+
+    selected:{
+        type:Boolean,
+        required:true,
+        default: false  
     }
 })
 

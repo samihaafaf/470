@@ -10,7 +10,7 @@ const session = require('express-session');
 require("./db/conn"); 
 
 const authRoutes = require("./router/auth");  //require the router
-
+const tripRoute =  require("./router/tripRoute");
 
 const Trip = require("./models/trips");
 
@@ -90,7 +90,7 @@ app.post("/post_ride",async (req, res) => {
 }) 
 
 //printing the values from the student database
-
+/*
 app.get("/view", async (req,res)=>{
     try{
         const things = await Trip.find({});  //use schema name
@@ -102,10 +102,11 @@ app.get("/view", async (req,res)=>{
         res.status(400).send(error);
     }
 })
-
+*/
 
 
 app.use(authRoutes);
+app.use(tripRoute);
 
 
 
