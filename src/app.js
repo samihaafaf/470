@@ -4,6 +4,8 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const hbs = require("hbs");
+const session = require('express-session');
+
 
 require("./db/conn"); 
 
@@ -14,7 +16,7 @@ const Trip = require("./models/trips");
 
 const { json } = require("express");
 
-const port = process.env.PORT || 3000;
+const port = 3001;
 
 const static_path = path.join(__dirname,"../public");
 const template_path = path.join(__dirname,"../templates/views");
@@ -30,9 +32,26 @@ app.use(express.static(static_path));
 app.set("view engine","hbs");
 app.set("views",template_path);
 
+
+app.use(session({
+    name: 'sid',
+    resave: false,
+    saveUninitialized: false, 
+    secret: 'hello world',
+    cookie: {
+        maxAge: 1000*60*60*20,
+        sameSite: true,
+        
+    }
+}))
 hbs.registerPartials(partials_path);
 
 app.get("/",(req,res) => {
+    if(req.session.userID){
+        console.log('yes');
+    }else{
+        console.log("no");
+    }
     res.render("index")
 });
 
@@ -46,7 +65,8 @@ app.post("/post_ride",async (req, res) => {
     try{
             
         const trips = new Trip({   //show a prompt that the email or password is
-                                               // not unique
+            poster: req.session.userID,
+            name: req.session.name,                                   // not unique
             trip_t: req.body.trip_t,
             loc: req.body.loc,
             p_class: req.body.p_class,

@@ -42,6 +42,7 @@ module.exports.register_post = async (req, res)=>{
 
 module.exports.login_get = (req, res) => {
     res.render("login");
+    console.log(req.session);
 }
 
 module.exports.login_post = async (req, res) => {  ///add form and use the name attribute for that
@@ -52,13 +53,16 @@ module.exports.login_post = async (req, res) => {  ///add form and use the name 
         const email = req.body.email;
         const password = req.body.password;
 
-        const useremail  = await Student.findOne({email:email});
+        const user  = await Student.findOne({email:email});
         //res.send(useremail);
         //console.log(useremail);
          
         console.log(`${email} and password is ${password}`);
-        if (useremail.password==password){
-            res.status(201).render('index'); 
+        if (user.password==password){
+
+            req.session.userID = user._id;
+            req.session.name = user.first_name;
+            res.redirect('/user_dash'); 
         }else{
             res.send("password are not matching");
         }
@@ -66,4 +70,16 @@ module.exports.login_post = async (req, res) => {  ///add form and use the name 
     }catch (error){
         res.status(400).send(error);
     }
+}
+
+module.exports.logout_post = (req, res) => {
+    req.session.destroy( err => {
+        if (err){
+            return res.redirect('/');
+        }
+
+        res.clearCookie('sid');
+        res.redirect('/login');
+    });
+
 }

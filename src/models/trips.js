@@ -30,6 +30,14 @@ const tripSchema = new mongoose.Schema({
     dep:{
         type:String,
         required:true
+    },
+    poster:{
+        type:String,
+        required:true 
+    },
+    name:{
+        type:String,
+        required:true  
     }
 })
 
