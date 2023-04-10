@@ -25,6 +25,10 @@
       <th scope="col">Time</th>
       <th scope="col">Department</th>
       <th scope="col">selected</th>
+      <th scope="col">action</th>
+
+      
+      
     </tr>
   </thead>
   <tbody>
@@ -38,6 +42,13 @@
       <td>{{this.trip_t}}</td>
       <td>{{this.dep}}</td>
       <td>{{this.selected}}</td>
+    <td>
+      <form action="/select" method="post">
+          <input type="hidden" name="selected_id" value="{{this._id}}">
+          <button class="nav-link" type="submit" >select</button>
+          </form>
+    </td>
+
     </tr>
     {{/each}}
   </tbody>
