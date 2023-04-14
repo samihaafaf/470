@@ -1,4 +1,4 @@
-{{>head}}
+{{>head title="Posted Trips"}}
 {{>navbar}}
 
  
@@ -27,11 +27,31 @@
       <td>{{this.trip_t}}</td>
       <td>{{this.dep}}</td>
       <td>{{this.selected}}</td>
+
+    <!--
+        disabling the details buttion on the posted page (pending)
+    -->
+
+    if ({{this.selected}}==true){
+    <td>
+      <form action="/details" method="post">  <!-- fetch details from the booked table using this selected_id -->
+          <input type="hidden" name="selected_id" value="{{this._id}}">  
+          <button class="nav-link" type="submit" >first details</button>
+          </form>
+    </td>
+    }
+    else if ({{this.selected}}==false){
+        <form action="/selected_post" method="post">  <!-- fetch details from the booked table using this selected_id -->
+          <input type="hidden" name="selected_id" value="{{this._id}}">  
+          <button class="nav-link" type="submit" disabled>second details</button>
+          </form>
+          
+    }
     </tr>
     {{/each}}
+
   </tbody>
 </table>
 </div>
 
- 
 {{>tail}}

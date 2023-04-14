@@ -1,8 +1,10 @@
 const posted_trip = require("../models/trips");
 const booked_trip = require("../models/booked");
 
-//view rides
-//view posted rides
+
+/*
+the below function prints the posted ride by the current user
+*/ 
 module.exports.trip_get = async (req, res) => {
     const current_user = req.session.userID;
     const user  = await posted_trip.find({poster:current_user});   //search using:match using
@@ -10,57 +12,37 @@ module.exports.trip_get = async (req, res) => {
     res.render("posted",{user:user});  //file name, sending data to a hbs file
 }
 
-/*
-once the ride is selected, the the trip is 
-1. added to the booked trip database
-2. the booked trip db has the field "booked by" which will have the id of the user who booked the trip
-3. once the ride is booked turn the selected into "true".
-
-*/
+//below function stores trips in the booked database
 module.exports.sel_ride = async (req, res) => {
     const thing = req.body.selected_id;
-    res.render("select", {thing:thing});
     const bt = new booked_trip({
-        booked_by: req.session.userID
-
-
+        booked_by: req.session.userID,   //stores the ID of the person who booked this trip
+        trip_id: thing  //this is the trip id of trip
+    
+    //change the selected to true for the thing variable in the trip table.
     })
+    const change  = await posted_trip.findOne({_id: thing});
+    console.log(change);
+    console.log(change.selected);
+    //change.selected = true;
+
     const book = await bt.save();
     res.status(201).render("index");
 
 }
 
 
-
+/*
+the below function prints the trips other users in the view page.
+*/ 
 module.exports.view_get = async (req, res) => {
     
     try{
 
         //db.inventory.find( { price: { $not: { $gt: 1.99 } } } )
         const current_user = req.session.userID;
-        //impliment manuakky
-        /*
         
-        //const all_trip = await posted_trip.find({poster:{$not:{current_user}}});  
-        //view rides posted by other riders only
-        view rides that are selected false only
-        
-        */
-        
-        const all_trip = await posted_trip.find({});
-        
-        const comp = [];
-        /*
-        for (let i=0; i<length(all_trip); i++) {
-            if (all_trip[i].poster != current_user) {
-                comp.push(all_trip[i]);
-            }
-        }
-        console.log("hello");
-
-        console.log(comp);
-        */
-        console.log("hello");
+        const all_trip = await posted_trip.find({poster: {$ne: current_user}});
 
         res.render("view",{all_trip: all_trip});
 

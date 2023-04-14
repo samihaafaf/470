@@ -11,6 +11,7 @@ require("./db/conn");
 
 const authRoutes = require("./router/auth");  //require the router
 const tripRoute =  require("./router/tripRoute");
+const view_tripRoute = require("./router/view_trip");
 
 const Trip = require("./models/trips");
 
@@ -76,7 +77,9 @@ app.post("/post_ride",async (req, res) => {
             dep:req.body.dep
         })
         const posted = await trips.save();
+
         res.status(201).render("index");
+        res.redirect("/user_dash");
 
 
             
@@ -107,6 +110,7 @@ app.get("/view", async (req,res)=>{
 
 app.use(authRoutes);
 app.use(tripRoute);
+app.use(view_tripRoute);
 
 
 
@@ -128,6 +132,13 @@ app.get("/user_dash", (req, res) => {
     res.render("user_dash");
 }) 
 
+
+
+
+app.get("/select", (req, res) => {
+    res.render("select");
+}) 
+
 app.get("/complain", (req, res) => {
     res.render("complain");
 })
@@ -135,6 +146,8 @@ app.get("/complain", (req, res) => {
 app.get("/post_ride", (req, res) => {
     res.render("post_ride");
 })
+
+
 
 
 

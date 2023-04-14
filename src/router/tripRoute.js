@@ -17,6 +17,6 @@ const redirectPosted = (req, res, next) => {
 router.get('/posted',tripController.trip_get);
 router.get('/view',tripController.view_get);
 //mon10th
-router.post('/select',tripController.sel_ride);
+//router.post('/select',tripController.sel_ride);
 
 module.exports = router;

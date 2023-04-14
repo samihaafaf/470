@@ -1,4 +1,4 @@
-{{>head}}
+{{>head title="View Trips"}}
 {{>navbar}}
 <h1> view page</h1>
 <!--
@@ -43,10 +43,18 @@
       <td>{{this.dep}}</td>
       <td>{{this.selected}}</td>
     <td>
-      <form action="/select" method="post">
-          <input type="hidden" name="selected_id" value="{{this._id}}">
+      {{#if this.selected}}
+      <form action="/selected_post" method="post">
+          <input type="hidden" name="selected_id" value="{{this._id}}"> 
+          <button class="nav-link" type="submit" disabled >select</button>
+      </form>
+      {{else}}
+        <form action="/selected_post" method="post">   <!-- goes to the selected post pg and updates-->
+          <input type="hidden" name="selected_id" value="{{this._id}}"> 
           <button class="nav-link" type="submit" >select</button>
-          </form>
+        </form>
+      {{/if}}
+      
     </td>
 
     </tr>
