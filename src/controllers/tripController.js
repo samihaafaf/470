@@ -7,29 +7,12 @@ the below function prints the posted ride by the current user
 */ 
 module.exports.trip_get = async (req, res) => {
     const current_user = req.session.userID;
-    const user  = await posted_trip.find({poster:current_user});   //search using:match using
+    const trips  = await posted_trip.find({poster:current_user});   //search using:match using
     
-    res.render("posted",{user:user});  //file name, sending data to a hbs file
+    res.render("posted",{trips:trips});  //file name, sending data to a hbs file
 }
 
-//below function stores trips in the booked database
-module.exports.sel_ride = async (req, res) => {
-    const thing = req.body.selected_id;
-    const bt = new booked_trip({
-        booked_by: req.session.userID,   //stores the ID of the person who booked this trip
-        trip_id: thing  //this is the trip id of trip
-    
-    //change the selected to true for the thing variable in the trip table.
-    })
-    const change  = await posted_trip.findOne({_id: thing});
-    console.log(change);
-    console.log(change.selected);
-    //change.selected = true;
 
-    const book = await bt.save();
-    res.status(201).render("index");
-
-}
 
 
 /*

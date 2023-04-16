@@ -12,6 +12,8 @@ require("./db/conn");
 const authRoutes = require("./router/auth");  //require the router
 const tripRoute =  require("./router/tripRoute");
 const view_tripRoute = require("./router/view_trip");
+const adminRoute = require("./router/adminRoute");
+const userRoute = require("./router/userRoute");
 
 const Trip = require("./models/trips");
 
@@ -111,6 +113,8 @@ app.get("/view", async (req,res)=>{
 app.use(authRoutes);
 app.use(tripRoute);
 app.use(view_tripRoute);
+app.use(adminRoute);
+app.use(userRoute);
 
 
 
@@ -125,7 +129,9 @@ app.use(view_tripRoute);
 
 //create a new user in out db
 
-
+app.get("/admin_dash",(req,res)=>{
+    res.render("admin_dash");
+})
 
 
 app.get("/user_dash", (req, res) => {

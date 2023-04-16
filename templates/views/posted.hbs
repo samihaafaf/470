@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each user}}
+    {{#each trips}}
     <tr>
       <th scope="row">{{@index_1}}</th>
       <td>{{this.loc}}</td>
@@ -32,21 +32,21 @@
         disabling the details buttion on the posted page (pending)
     -->
 
-    if ({{this.selected}}==true){
     <td>
-      <form action="/details" method="post">  <!-- fetch details from the booked table using this selected_id -->
-          <input type="hidden" name="selected_id" value="{{this._id}}">  
-          <button class="nav-link" type="submit" >first details</button>
-          </form>
+
+      {{#if this.selected}}  <!-- if true view details of the selector-->
+      <form action="/trip_detail" method="post">
+          <input type="hidden" name="selected_id" value="{{this._id}}"> 
+          <button class="nav-link" type="submit" >select</button>
+      </form>
+      {{else}}
+        <form action="/selected_post" method="post">   <!-- goes to the selected post pg and updates-->
+          <input type="hidden" name="selected_id" value="{{this._id}}"> 
+          <button class="nav-link" type="submit" disabled >select</button>
+        </form>
+      {{/if}}
+
     </td>
-    }
-    else if ({{this.selected}}==false){
-        <form action="/selected_post" method="post">  <!-- fetch details from the booked table using this selected_id -->
-          <input type="hidden" name="selected_id" value="{{this._id}}">  
-          <button class="nav-link" type="submit" disabled>second details</button>
-          </form>
-          
-    }
     </tr>
     {{/each}}
 

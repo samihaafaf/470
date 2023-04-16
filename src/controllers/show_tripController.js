@@ -23,19 +23,28 @@ module.exports.booked_get = async (req, res) => {
     for(let j=0; j<our.length;j++){
         let stu = our[j].poster;
         let info2 = await students.find({_id:stu});
-        
-        target.push(info2[0]);
+        let name = info2[0].first_name;
+        let dep = info2[0].department;
+        let phone = info2[0].phone_no;
+        our[j].name = name;
+        our[j].dept = dep;
+        our[j].phone = phone;
+
+
+        //target.push(info2[0]);
 
         }
         
+    /*
     
+     
     console.log("the poster info is:")
     console.log(target);
     console.log("the trips info is:")
     console.log(our);
+    */
     
-    
-    res.render("booked_rides", {trips:our,stu:target}); // this gets the trips selected by the user through the booked table
+    res.render("booked_rides", {trips:our}); // this gets the trips selected by the user through the booked table
     
     
 }
@@ -62,4 +71,21 @@ module.exports.selected_post = async(req, res) => {
     res.status(201).render("index");
     
     res.redirect("/view");
+}
+
+
+
+
+module.exports.detail_post = async(req, res) => {
+    const tripID = req.body.selected_id;
+    console.log(tripID);
+    const trips = await booked_trip.find({trip_id:tripID});
+    const selector = trips[0].booked_by;
+    const person = await students.findOne({_id:selector});
+    console.log(trips);
+
+    // here gather the detail of the booked by and then render 
+    //those info into the details page
+    
+    res.render("trip_detail",{person:person});
 }

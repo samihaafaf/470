@@ -1,8 +1,49 @@
-{{>head}}
+{{>head title="Admin Dashboard"}}
 
+{{>admin_nav}}
 <h1> this is the admin dashboard</h1>
 
 
+
+<header>
+  <!-- Sidebar -->
+ <div class=container>
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        
+        <form action="/manageAccount" method="get">
+        <a href="/manageAccount" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-lock fa-fw me-3"></i><span>Manage/delete accounts</span></a>
+        </form>
+        
+
+         <form action="/admin_view" method="get">
+        <a href="" class="list-group-item list-group-item-action py-2 ripple"><i
+            class="fas fa-lock fa-fw me-3"></i><span>Manage Complaints</span></a>
+        </form>
+        
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <!-- Container wrapper -->
+    
+    <!-- Container wrapper -->
+  </nav>
+</div>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px;">
+  <div class="container pt-4"></div>
+</main>
+<!--Main layout-->
 
 
 {{>tail}}
