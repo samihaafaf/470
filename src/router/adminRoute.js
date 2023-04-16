@@ -12,10 +12,22 @@ const redirectDash = (req, res, next) => {
     }
 }
 
+const redirectAdminLogin = (req, res, next) => {
+    if (req.session.userID){
+        next();
+    } else {
+        
+        res.redirect('/adminLogin');
+    }
+}
+
 router.get('/adminLogin',redirectDash, adminController.admin_get);
 router.post('/adminLogin',redirectDash,adminController.admin_post);
-router.get('/manageAccount',adminController.manage_get);
-router.post('/manageAccount',adminController.manage_post);
+router.get('/manageAccount',redirectAdminLogin,adminController.manage_get);
+router.post('/manageAccount',redirectAdminLogin,adminController.manage_post);
+router.get('/manageComplaint',redirectAdminLogin,adminController.manageComplaint_get);
+router.post('/manageComplaint',redirectAdminLogin,adminController.manageComplaint_post);
+
 
 
 module.exports = router;

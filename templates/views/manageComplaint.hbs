@@ -1,0 +1,48 @@
+{{>head}}
+{{>navbar}}
+
+<h1> mange complaint pg</h1>
+
+
+
+<div class="container">
+<table class="table mt-5">
+  <thead>
+    <tr>
+      
+      <th scope="col">Category</th>
+      <th scope="col">Details</th>
+      <th scope="col">Lodged By</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each comp}}
+    <tr>
+      
+      <td>{{this.category}}</td>
+      <td>{{this.details}}</td>
+      <td>{{this.lodged_by}}</td>
+      <td>
+        <form action="/manageComplaint" method="post">
+        <input type="hidden" name="comp_id" value="{{this._id}}">
+        <button type="submit" class="btn btn-danger">Delete</button>            
+        </form>
+        
+      </td>
+
+    <!--
+        disabling the details buttion on the posted page (pending)
+    -->
+
+    
+    </tr>
+    {{/each}}
+
+  </tbody>
+</table>
+</div>
+
+
+
+{{>tail}}

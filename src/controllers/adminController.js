@@ -1,5 +1,6 @@
 const admin = require("../models/admin");
 const Student = require("../models/registers");
+const Complaints = require("../models/complain");
 
 
 
@@ -41,6 +42,27 @@ module.exports.manage_post = async (req, res) => {
         console.log(userID);
         const store = await Student.deleteOne({_id:userID});
         res.redirect('/manageAccount');
+
+
+
+    }catch (error){
+        res.status(400).send(error);
+    }
+}
+
+module.exports.manageComplaint_get = async (req, res) => {
+    const complaints = await Complaints.find({});
+
+
+    res.render("manageComplaint",{comp:complaints});
+}
+
+module.exports.manageComplaint_post = async (req, res) => {
+    try{
+
+        const compID = req.body.comp_id;  //user id of the student
+        const store = await Complaints.deleteOne({_id:compID});
+        res.redirect('/manageComplaint');
 
 
 

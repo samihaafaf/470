@@ -1,28 +1,37 @@
 {{>head title="Lodge Complaint"}}
 {{>navbar}}
-<div class= container >
+<div class="container" >
 <form class="row g-3 mt-5" action="/complain_post" method="post">
 
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li>
-      <form action="#">
-        <input type="form-check-input">
-      </form>
-    </li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
+<div class="col-md-6 mb-4">
+
+                  <h6 class="mb-2 pb-1 mt-5"><h3>Complaint Category:</h3> </h6>
+
+                  <div class="form-check mt-5">
+                    <input class="form-check-input" type="radio" name="comp" id="towards "
+                      value="Regarding Website" checked name="comp"/>
+                    <label class="form-check-label" for="towards"><h4>Regarding Website</h4></label>
+                  </div>
+
+                  <div class="form-check mt-5">
+                    <input class="form-check-input" type="radio" name="comp" id="from"
+                      value="Regarding User" />
+                    <label class="form-check-label" for="from"><h4>Regarding User</h4></label>
+                  </div>
+
+                  <div class="form-check mt-5">
+                    <input class="form-check-input" type="radio" name="comp" id="from"
+                      value="Miscellaneous" />
+                    <label class="form-check-label" for="from"><h4>Miscellaneous</h4></label>
+                  </div>
+
 </div>
 
 
 <div class="mb-3 mt-5">
-  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <label for="exampleFormControlTextarea1" class="form-label"> <h3>Complaint Details </h3></label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="details"></textarea>
 </div>
 
 <!--
