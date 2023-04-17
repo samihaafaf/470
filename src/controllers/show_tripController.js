@@ -22,6 +22,8 @@ module.exports.booked_get = async (req, res) => {
    
     for(let j=0; j<our.length;j++){
         let stu = our[j].poster;
+        //console.log("poster is");
+        //console.log(stu);
         let info2 = await students.find({_id:stu});
         let name = info2[0].first_name;
         let dep = info2[0].department;

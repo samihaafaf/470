@@ -1,5 +1,6 @@
 const Student = require("../models/registers");
 const Complain = require("../models/complain");
+const Trip = require("../models/trips");
 
 
 /*
@@ -84,6 +85,42 @@ module.exports.complain_post = async (req,res) =>{
 
 
         //res.render("index");  /// can still view the dashboard (kill the session)
+
+
+    } catch (error){
+        res.status(400).send(error);
+    }
+}
+
+
+
+
+module.exports.post_ride = async (req,res) =>{
+    try{
+
+        const trips = new Trip({   //show a prompt that the email or password is
+            poster: req.session.userID,
+            name: req.session.name,                                   // not unique
+            trip_t: req.body.trip_t,
+            loc: req.body.loc,
+            p_class: req.body.p_class,
+            dir: req.body.dir,
+            gender:req.body.gender,
+            date:req.body.date,
+            dep:req.body.dep
+        })
+        const posted = await trips.save();
+
+        res.status(201).render("index");
+        res.redirect("/user_dash");
+
+
+            
+            
+        //const registered = await Student.save();
+               //res.status(201).render(index);
+        
+        
 
 
     } catch (error){
