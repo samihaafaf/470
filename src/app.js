@@ -58,27 +58,6 @@ app.get("/",(req,res) => {
     res.render("index")
 });
 
-//create a new user in the database
-
-
-//creating the trip database
-
-
-
-//printing the values from the student database
-/*
-app.get("/view", async (req,res)=>{
-    try{
-        const things = await Trip.find({});  //use schema name
-        res.render("view", {
-            things
-        });
-        console.log(things);
-    }catch(error){
-        res.status(400).send(error);
-    }
-})
-*/
 
 
 app.use(authRoutes);
