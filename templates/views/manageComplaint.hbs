@@ -1,7 +1,14 @@
 {{>head}}
 {{>navbar}}
 
-<h1> mange complaint pg</h1>
+<center>
+  <p class="fw-light text">
+    <h2> Complaint List</h2>
+  
+  </p>
+</center>
+
+
 
 
 
@@ -9,7 +16,7 @@
 <table class="table mt-5">
   <thead>
     <tr>
-      
+      <th>No.</th>
       <th scope="col">Category</th>
       <th scope="col">Details</th>
       <th scope="col">Lodged By</th>
@@ -19,7 +26,7 @@
   <tbody>
     {{#each comp}}
     <tr>
-      
+      <th scope="row">{{@index}}</th>
       <td>{{this.category}}</td>
       <td>{{this.details}}</td>
       <td>{{this.lodged_by}}</td>

@@ -1,6 +1,17 @@
 {{>head title="Posted Trips"}}
 {{>navbar}}
 
+
+
+
+<center>
+  <p class="fw-light text">
+    <h2> Posted Trips</h2>
+  
+  </p>
+</center>
+
+
  
 <div class="container">
 <table class="table mt-5">
@@ -19,7 +30,7 @@
   <tbody>
     {{#each trips}}
     <tr>
-      <th scope="row">{{@index_1}}</th>
+      <th scope="row">{{@index}}</th>
       <td>{{this.loc}}</td>
       <td>{{this.gender}}</td>
       <td>{{this.date}}</td>
@@ -37,12 +48,12 @@
       {{#if this.selected}}  <!-- if true view details of the selector-->
       <form action="/trip_detail" method="post">
           <input type="hidden" name="selected_id" value="{{this._id}}"> 
-          <button class="nav-link" type="submit" >select</button>
+          <button class="btn btn-success" type="submit" >Show Details</button>
       </form>
       {{else}}
         <form action="/selected_post" method="post">   <!-- goes to the selected post pg and updates-->
           <input type="hidden" name="selected_id" value="{{this._id}}"> 
-          <button class="nav-link" type="submit" disabled >select</button>
+          <button class="btn btn-success" type="submit" disabled >Show Details</button>
         </form>
       {{/if}}
 
